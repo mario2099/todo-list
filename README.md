@@ -24,7 +24,7 @@ To run the ToDo List application, you'll need to have the following software ins
 3. Create a MySQL database and table to store your tasks. You can use the following SQL commands to create a simple `tasks` table:
 ```
 CREATE DATABASE todo_list;
-USE todo_app;
+USE todo_list;
 CREATE TABLE todo-list (
 id INT NOT NULL AUTO_INCREMENT,
 todo VARCHAR(255) NOT NULL,
