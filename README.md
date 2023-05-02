@@ -22,7 +22,7 @@ To run the ToDo List application, you'll need to have the following software ins
 1. Clone this repository to your local machine.
 2. Import the project into your preferred Java IDE (e.g. IntelliJ IDEA, Eclipse).
 3. Create a MySQL database and table to store your tasks. You can use the following SQL commands to create a simple `tasks` table:
-
+```
 CREATE DATABASE todo_app;
 USE todo_app;
 CREATE TABLE tasks (
@@ -31,6 +31,8 @@ task_name VARCHAR(255) NOT NULL,
 is_completed BOOLEAN NOT NULL,
 PRIMARY KEY (id)
 );
+```
+
 4. Update the `src/main/resources/application.properties` file with your MySQL database connection details:
    spring.datasource.url=jdbc:mysql://localhost/todo_list?useSSL=false
    spring.datasource.username=your_username
