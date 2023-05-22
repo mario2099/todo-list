@@ -18,10 +18,7 @@ public class ListController {
     }
     @RequestMapping(value = "api/todolist", method = RequestMethod.POST)
     public void addTodo(@RequestBody TodoList todoList){todoListDao.addTodo(todoList); }
-    // The TodoList parameter is used to represent the incoming JSON data as a Java object
-    // that can be processed by the server-side application. This Java object is then passed
-    // to the todoListDao object's addTodo method to persist it in the database or to perform
-    // other business logic.
+
     @RequestMapping(value = "api/todolist/delete/{id}", method = RequestMethod.DELETE)
     public void deleteTodo(@PathVariable Long id){todoListDao.deleteTodo(id);}
     @RequestMapping(value = "api/todolist/complete/{id}", method = RequestMethod.PUT)

@@ -38,13 +38,6 @@ public class TodoListDaoImp implements TodoListDao {
             boolean currentCompleted = todoList.isCompleted();
             todoList.setCompleted(!currentCompleted);
             entityManager.merge(todoList);
-//            if (todoList.isCompleted()== true){
-//                todoList.setCompleted(false);
-//                entityManager.merge(todoList);
-//            }else if (todoList.isCompleted()== false){
-//                todoList.setCompleted(true);
-//                entityManager.merge(todoList);
-//            };
         }
     }
 }

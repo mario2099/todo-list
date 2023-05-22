@@ -62,6 +62,22 @@ async function addTodo(e) {
 
   //Prevent natural behaviour
   e.preventDefault();
+  //POST request to API
+  let data = {};
+  data.todo = todoInput.value;
+  data.completed = false;
+
+  //console.log(JSON.stringify(data));
+  const request = await fetch('api/todolist', {
+    method: 'POST',
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(data)
+  });
+  const result = await request;
+  const todoId = result.id;
 
   //Create todo div
   const todoDiv = document.createElement("div");
@@ -77,38 +93,25 @@ async function addTodo(e) {
   const completedButton = document.createElement("button");
   completedButton.innerHTML = `<i class="fas fa-check"></i>`;
   completedButton.classList.add("complete-btn");
+  completedButton.onclick = function (){completeTodo(event, todoId)};
   todoDiv.appendChild(completedButton);
 
   //Create trash button
   const trashButton = document.createElement("button");
   trashButton.innerHTML = `<i class="fas fa-trash"></i>`;
   trashButton.classList.add("trash-btn");
+  trashButton.onclick = function (){deleteTodo(event, todoId)};
   todoDiv.appendChild(trashButton);
+
+  todoInput.value = ""; //clean input
 
   //attach final Todo
   todoList.appendChild(todoDiv);
 
-  //POST request to API
-  let data = {};
-  data.todo = todoInput.value;
-  data.completed = false;
-  todoInput.value = ""; //clean input
-  //console.log(JSON.stringify(data));
-  const request = await fetch('api/todolist', {
-    method: 'POST',
-    headers: {
-      'Accept': 'application/json',
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify(data)
-  });
-  const result = await request;//antes era request.json()
-
 }
 
 async function deleteTodo(event, id) {
-  //imprime un int que es el id e imprime un PointerEvent //tengo que usar esa id en el delete request
-  const item = event.target; //analizar a fondo respuesta de chatgpt cuando vuelva
+  const item = event.target;
   console.log("id: "+id+" |class: "+item.classList+ " |function: deleteTodo()");
 
   const todo = item.parentElement;
